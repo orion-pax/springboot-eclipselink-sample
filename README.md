@@ -1,1 +1,1 @@
-# springbot-eclipselink-sample
+# springboot-eclipselink-sample
