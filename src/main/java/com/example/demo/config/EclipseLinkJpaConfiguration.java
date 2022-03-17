@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import org.eclipse.persistence.config.PersistenceUnitProperties;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
@@ -7,8 +8,6 @@ import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.AbstractJpaVendorAdapter;
@@ -21,7 +20,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
-import org.eclipse.persistence.config.PersistenceUnitProperties;
 
 @Configuration
 @EnableTransactionManagement
@@ -56,16 +54,6 @@ public class EclipseLinkJpaConfiguration extends JpaBaseConfiguration {
                 .persistenceUnit("YourPersistenceUnitName")
                 .properties(initJpaProperties()).build();
     }
-
-//    @Bean
-//    public static DataSource dataSource() {
-//        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("org.h2.Driver");
-//        dataSource.setUrl("jdbc:h2:mem:marcnuridemo;DB_CLOSE_DELAY=-1");
-//        dataSource.setUsername("sa");
-//        dataSource.setPassword("password");
-//        return dataSource;
-//    }
 
     @Bean
     public static PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
